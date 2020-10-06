@@ -15,7 +15,7 @@ public class RollDiceController {
     @GetMapping("/roll-dice/{n}")
     public String guessedNumberResult(@PathVariable int n, Model model){
         String message ="";
-        int rolledNum = (int) Math.random()*6 +1;
+        int rolledNum = (int) ((Math.random()*6) +1);
         String roll = String.valueOf(rolledNum);
         String guessedNum = String.valueOf(n);
 

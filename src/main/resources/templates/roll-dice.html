@@ -5,24 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Roll Dice</title>
+    <link th:replace="partials/header :: bootstrap">
+    <link th:replace="partials/header :: css">
 </head>
 <body>
 <div th:include="partials/navbar :: navbar">
 </div>
+<div>
+    <h1>Guess a number!</h1>
 
-<h1>Guess a number!</h1>
+    <ul>
+        <li><a href="/roll-dice/1">1</a></li>
+        <li><a href="/roll-dice/2">2</a></li>
+        <li><a href="/roll-dice/3">3</a></li>
+        <li><a href="/roll-dice/4">4</a></li>
+        <li><a href="/roll-dice/5">5</a></li>
+        <li><a href="/roll-dice/6">6</a></li>
+    </ul>
+    <h3><!--/*@thymesVar id="message" type="message"*/-->
+        <span th:text="${message}"></span></h3>
+    <br>
 
-<ul>
-    <li><a href="/roll-dice/1">1</a></li>
-    <li><a href="/roll-dice/2">2</a></li>
-    <li><a href="/roll-dice/3">3</a></li>
-    <li><a href="/roll-dice/4">4</a></li>
-    <li><a href="/roll-dice/5">5</a></li>
-    <li><a href="/roll-dice/6">6</a></li>
-</ul>
-<h3><!--/*@thymesVar id="message" type="message"*/-->
-    <span th:text="${message}"></span></h3>
-<br>
+</div>
 
 </body>
 </html>

@@ -1,7 +1,11 @@
 package com.example.blog;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -13,14 +17,19 @@ public class PostController {
 
     @GetMapping("/posts")
     @ResponseBody
-    public String posts(){
-        return "<h1>Index</h1>";
+    public String posts(Model model){
+        List<Post> postList = new ArrayList<>();
+        postList.add(new Post(0, "First Post", "This is the first post"));
+        postList.add(new Post(0, "Second Post", "This is the second post"));
+        model.addAttribute("posts", postList);
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String postsId(@PathVariable long id){
-        return "<h1>You are viewing index page " + id + ".</h1>";
+    public String postsId(@PathVariable long id, Model model){
+        Post post = new Post(0, "Single Post", "This is the body for the single post");
+        model.addAttribute("post", post);
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
