@@ -10,6 +10,12 @@ import java.util.List;
 @Controller
 public class PostController {
 
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
+
 //TODO:    GET	/posts	        posts index page
 //         GET	/posts/{id}	    view an individual post
 //         GET	/posts/create	view the form for creating a post
