@@ -50,5 +50,15 @@ public class PostController {
         return "<h1>Here is where my form for creating a post would go if I had one.</h1>";
     }
 
+    @PostMapping("posts/edit")
+    @ResponseBody
+    public void postsEdit(){
 
+    }
+
+    @PostMapping("posts/delete")
+    @ResponseBody
+    public void postsDelete(){
+
+    }
 }
