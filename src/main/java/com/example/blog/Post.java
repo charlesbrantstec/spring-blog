@@ -2,11 +2,20 @@ package com.example.blog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import javax.persistence.*;
 
-@Controller
+@Entity
+@Table(name="posts")
 public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 100)
     private String title;
+
+    @Column(nullable = false)
     private String body;
 
     public Post(long id, String title, String body) {
