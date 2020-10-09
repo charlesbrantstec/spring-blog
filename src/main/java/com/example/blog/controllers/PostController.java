@@ -1,8 +1,10 @@
 package com.example.blog;
 
+import com.example.blog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.example.blog.repositories.PostRepository;
 
 import java.util.ArrayList;
 import java.util.List;
