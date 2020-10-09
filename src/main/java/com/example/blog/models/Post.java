@@ -1,7 +1,5 @@
-package models;
+package com.example.blog.models;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 import javax.persistence.*;
 
 @Entity

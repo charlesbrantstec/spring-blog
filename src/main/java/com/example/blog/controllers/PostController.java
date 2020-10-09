@@ -1,4 +1,4 @@
-package com.example.blog;
+package com.example.blog.controllers;
 
 import com.example.blog.models.Post;
 import org.springframework.stereotype.Controller;
@@ -12,10 +12,10 @@ import java.util.List;
 @Controller
 public class PostController {
 
-    private final PostRepository postDao;
+    private final PostRepository postRepo;
 
-    public PostController(PostRepository postDao) {
-        this.postDao = postDao;
+    public PostController(PostRepository postRepo) {
+        this.postRepo = postRepo;
     }
 
 //TODO:    GET	/posts	        posts index page
@@ -40,27 +40,38 @@ public class PostController {
         return "posts/show";
     }
 
-    @GetMapping("/posts/create")
-    @ResponseBody
-    public String postsCreateForm(){
-        return "<h1>Here is where my form for creating a post would go if I had one.</h1>";
-    }
-
-    @PostMapping("/posts/create")
-    @ResponseBody
+    @RequestMapping(path = "/posts/create/", method = RequestMethod.GET)
     public String postsCreate(){
+        return "posts/create";
+    }
+
+    @RequestMapping(path = "/posts/create/", method = RequestMethod.POST)
+    @ResponseBody
+    public String postsFormCreate(@RequestParam(name = "title") String title,
+                                  @RequestParam(name = "body") String body,
+                                  Model model){
+
         return "<h1>Here is where my form for creating a post would go if I had one.</h1>";
     }
 
-    @PostMapping("posts/edit")
-    @ResponseBody
-    public void postsEdit(){
-
+    @PostMapping("posts/delete/{id}")
+    public String postsDelete(@PathVariable long id, Model model){
+        Post post = getPostById(id);
+        if (post != null){
+            postRepo.delete(post);
+        }
+        return "posts/index";
     }
 
-    @PostMapping("posts/delete")
-    @ResponseBody
-    public void postsDelete(){
-
+    @PostMapping("posts/delete/{id}")
+    public String postsEdit(@PathVariable long id, Model model){
+        Post post = getPostById(id);
+        if (post != null){
+            return "redirect:/posts/index";
+        }
+        model.addAttribute("post", post);
+        return "posts/index";
     }
+
+
 }
