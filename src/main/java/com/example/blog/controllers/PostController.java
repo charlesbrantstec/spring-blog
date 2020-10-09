@@ -54,24 +54,23 @@ public class PostController {
         return "<h1>Here is where my form for creating a post would go if I had one.</h1>";
     }
 
-    @PostMapping("posts/delete/{id}")
-    public String postsDelete(@PathVariable long id, Model model){
-        Post post = getPostById(id);
-        if (post != null){
-            postRepo.delete(post);
-        }
-        return "posts/index";
-    }
-
-    @PostMapping("posts/delete/{id}")
-    public String postsEdit(@PathVariable long id, Model model){
-        Post post = getPostById(id);
-        if (post != null){
-            return "redirect:/posts/index";
-        }
+    @GetMapping("/posts/edit/{id}")
+    public String editAd(@PathVariable long id, Model model) {
+        Post post = postRepo.getPostById(id);
         model.addAttribute("post", post);
-        return "posts/index";
+        return "ads/edit";
     }
 
+    @PostMapping("/posts/edit")
+    public String updateAd(@RequestParam(name = "id") long id,
+                           @RequestParam(name = "title") String title,
+                           @RequestParam(name = "body") String body) {
+        Post post = new Post();
+        post.setId(id);
+        post.setTitle(title);
+        post.setBody(body);
+        postRepo.save(post);
+        return "redirect:/ads/" + post.getId();
+    }
 
 }
