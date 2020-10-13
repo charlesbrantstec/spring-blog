@@ -1,6 +1,7 @@
 package com.example.blog.models;
 
 import javax.persistence.*;
+import com.example.blog.models.User;
 
 @Entity
 @Table(name="posts")
@@ -17,8 +18,10 @@ public class Post {
     private String body;
 
     @ManyToOne
-    @JoinColumn (name = "post_id")
-    private Post post;
+    @JoinColumn (name = "user_id")
+    private User user;
+
+
 
     public Post(long id, String title, String body) {
         this.id = id;

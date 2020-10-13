@@ -24,7 +24,7 @@ public class PostController {
 //         POST	/posts/create	create a new post
 
     @GetMapping("/posts")
-    @ResponseBody
+//    @ResponseBody
     public String posts(Model model){
         List<Post> postList = new ArrayList<>();
         postList.add(new Post(0, "First Post", "This is the first post"));
