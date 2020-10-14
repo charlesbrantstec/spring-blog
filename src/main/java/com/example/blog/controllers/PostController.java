@@ -40,18 +40,21 @@ public class PostController {
         return "posts/show";
     }
 
-    @RequestMapping(path = "/posts/create/", method = RequestMethod.GET)
-    public String postsCreate(){
+    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
+    public String createPostForm(Model model) {
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
-    @RequestMapping(path = "/posts/create/", method = RequestMethod.POST)
-    @ResponseBody
-    public String postsFormCreate(@RequestParam(name = "title") String title,
-                                  @RequestParam(name = "body") String body,
-                                  Model model){
-
-        return "<h1>Here is where my form for creating a post would go if I had one.</h1>";
+    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
+    public String createPost(@RequestParam(name = "title") String title,
+                             @RequestParam(name = "body") String body,
+                             Model model) {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setBody(body);
+        postRepo.save(post);
+        return "redirect:/posts/" + post.getId();
     }
 
     @GetMapping("/posts/edit/{id}")
