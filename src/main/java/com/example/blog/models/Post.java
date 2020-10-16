@@ -55,4 +55,7 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public com.example.springdemo.models.User getOwner() {
+    }
 }

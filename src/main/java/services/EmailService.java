@@ -1,6 +1,6 @@
 package services;
 
-import com.example.blog.models.Post;
+    \import com.example.blog.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
