@@ -14,19 +14,21 @@ public class Post {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
     @ManyToOne
-    @JoinColumn (name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
+    public Post() {
+    }
 
-
-    public Post(long id, String title, String body) {
+    public Post(long id, String title, String body, User user) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.user = user;
     }
 
     public long getId() {
@@ -35,9 +37,6 @@ public class Post {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Post(){
     }
 
     public String getTitle() {
@@ -56,6 +55,11 @@ public class Post {
         this.body = body;
     }
 
-    public com.example.springdemo.models.User getOwner() {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

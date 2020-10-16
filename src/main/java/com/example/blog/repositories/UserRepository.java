@@ -1,12 +1,9 @@
-//package com.example.blog.repositories;
-//import com.example.blog.models.Post;
-//import org.springframework.data.jpa.repository.JpaRepository;
-//import org.springframework.data.jpa.repository.Query;
-//import org.springframework.data.repository.query.Param;
-//import com.example.springdemo.models.User;
-//
-//import java.util.List;
-//
-//public interface UserRepository extends JpaRepository<User, Long> {
-//
-//}
+package com.example.blog.repositories;
+
+import com.example.blog.models.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    // Need to be able to search for user by username, as in Integration Tests
+    User findByUsername(String username);
+}
